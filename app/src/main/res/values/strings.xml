@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Iiyndinai</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_hotdeals">Hot Deals</string>
+    <string name="nav_item_enquiry">Enquiry</string>
+    <string name="nav_item_track">Track Order</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_hotdeals</item>
+        <item>@string/nav_item_enquiry</item>
+        <item>@string/nav_item_track</item>
+    </string-array>
+
+    <string name="title_track">Enquiry</string>
+    <string name="title_enquiry">Enquiry</string>
+    <string name="title_hotdeals">Hot Deals</string>
+    <string name="title_home">Iiyndinai</string>
+</resources>
