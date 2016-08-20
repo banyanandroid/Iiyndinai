@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,6 +52,7 @@ public class HomeFragment extends Fragment {
 
     //Web api url
     public static final String DATA_URL = "http://iiyndinai.com/android/ws_category.php";
+
 
     //Tag values to read from json
     public static final String TAG_IMAGE_URL = "category_image";
@@ -107,6 +109,10 @@ public class HomeFragment extends Fragment {
 
                 str_selected_id = mGridData.get(position).getID();
 
+                AppConfig.cid = str_selected_id;
+
+                Intent in = new Intent(getActivity(), Activity_Products.class);
+                startActivity(in);
             }
         });
 
@@ -200,5 +206,6 @@ public class HomeFragment extends Fragment {
         // Adding request to request queue
         queue.add(request);
     }
+
 
 }
