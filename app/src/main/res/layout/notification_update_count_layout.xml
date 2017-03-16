@@ -6,6 +6,7 @@
     android:layout_gravity="center"
     android:clickable="true"
     android:gravity="center"
+    android:id="@+id/parent_batch"
     android:orientation="vertical">
 
     <RelativeLayout

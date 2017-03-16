@@ -5,15 +5,13 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:layout_width="fill_parent"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="45dp"
-        android:text="TRACK ORDER"
-        android:textStyle="bold"/>
+        android:id="@+id/myorder_list"
+        android:dividerHeight="1dp"
+        android:divider="@color/colorAccent">
+
+    </ListView>
 
 </RelativeLayout>

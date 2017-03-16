@@ -3,8 +3,9 @@ package com.banyan.iiyndinai.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,9 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,7 +40,7 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    ImageView img_slider;
+    //ImageView img_slider;
     private GridView mGridView;
     private ProgressBar mProgressBar;
     GridItem item;
@@ -74,7 +73,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        img_slider = (ImageView) rootView.findViewById(R.id.home_img_slider);
+        //img_slider = (ImageView) rootView.findViewById(R.id.home_img_slider);
         mGridView = (GridView) rootView.findViewById(R.id.home_gridView);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.home_progressBar);
 
@@ -84,7 +83,7 @@ public class HomeFragment extends Fragment {
         /**************************************
          *  Slider Function
          * ************************************/
-        final int[] slide = new int[]{R.drawable.banner1, R.drawable.banner2, R.drawable.banner3, R.drawable.banner4};
+        /*final int[] slide = new int[]{R.drawable.banner_2, R.drawable.banner_3, R.drawable.banner_4};
 
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
@@ -99,7 +98,7 @@ public class HomeFragment extends Fragment {
                 handler.postDelayed(this, 10000);  //for interval... slide changes
             }
         };
-        handler.postDelayed(runnable, 10000); //for initial delay..
+        handler.postDelayed(runnable, 10000); //for initial delay..*/
 
         //Grid view click event
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -109,7 +108,13 @@ public class HomeFragment extends Fragment {
 
                 str_selected_id = mGridData.get(position).getID();
 
-                AppConfig.cid = str_selected_id;
+                //  AppConfig.cid = str_selected_id;
+
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("cid", str_selected_id);
+                editor.commit();
 
                 Intent in = new Intent(getActivity(), Activity_Products.class);
                 startActivity(in);
@@ -130,6 +135,9 @@ public class HomeFragment extends Fragment {
 
         return rootView;
     }
+
+
+
 
     @Override
     public void onAttach(Activity activity) {

@@ -53,7 +53,6 @@ public class ProductAdapter extends BaseAdapter {
             v = inflater.inflate(R.layout.list_products, null);
 
         TextView name = (TextView) v.findViewById(R.id.prod_name_txt);
-        TextView weight = (TextView) v.findViewById(R.id.prod_weight_txt);
         TextView price = (TextView) v.findViewById(R.id.prod_price_txt);
         // Button interested = (Button)v.findViewById(R.id.interested);
         ImageView prod_img = (ImageView) v.findViewById(R.id.prod_img);
@@ -61,9 +60,11 @@ public class ProductAdapter extends BaseAdapter {
         HashMap<String, String> result = new HashMap<String, String>();
         result = data.get(position);
 
-        // no.setText(result.get(ResultFragment.TAG_TEAM_POSITION));
-        name.setText(result.get(Activity_Products.TAG_PROD_NAME));
-        weight.setText(result.get(Activity_Products.TAG_PROD_WEIGHT));
+        String str_pro_name = result.get(Activity_Products.TAG_PROD_NAME);
+        String str_pro_weight = result.get(Activity_Products.TAG_PROD_WEIGHT);
+        String str_gram = result.get(Activity_Products.TAG_PROD_GRAME_NAME);
+
+        name.setText(str_pro_name + " " + str_pro_weight  + " " + str_gram);
         price.setText(result.get(Activity_Products.TAG_PROD_PRICE));
 
         String impath = result.get(Activity_Products.TAG_PROD_IMAGE_URL);

@@ -7,19 +7,12 @@
     <LinearLayout
         android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:text="Registration"
-            android:textColor="@color/textColorthird"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,6 +66,7 @@
                         android:layout_weight="1"
                         android:hint="Mobile Number"
                         android:inputType="number"
+                        android:maxLength="10"
                         android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -142,6 +136,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:hint="Pincode"
+                        android:maxLength="6"
                         android:inputType="number"
                         android:singleLine="true" />
 

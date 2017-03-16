@@ -24,7 +24,7 @@
         android:layout_gravity="bottom"
         android:gravity="center"
         android:textColor="@color/textColorthird"
-        android:background="@color/trans_dark"
+        android:background="@drawable/toolbar"
         android:textSize="16dp"
         android:text="Text"
         android:layout_alignParentBottom="true"

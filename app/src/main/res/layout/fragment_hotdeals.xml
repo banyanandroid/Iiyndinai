@@ -7,14 +7,14 @@
 
     <TextView
         android:id="@+id/label"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
         android:gravity="center_horizontal"
-        android:textSize="45dp"
         android:text="Hot Deals"
-        android:textStyle="bold"/>
+        android:textSize="45dp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

@@ -4,209 +4,162 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/container_toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="center"
-            android:text="Quick Enquiry :"
-            android:textColor="@color/textColorthird"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:weightSum="12">
 
-    </LinearLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF">
+                <EditText
+                    android:id="@+id/enq_edt_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Name"
+                    android:singleLine="true" />
 
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="false">
+                <requestFocus />
+            </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:weightSum="12">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/enq_edt_email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/enq_edt_name"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="Name"
-                        android:singleLine="true" />
-                    <requestFocus />
-                </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/enq_edt_mobile"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Mobile"
+                    android:maxLength="10"
+                    android:inputType="phone"
+                    android:singleLine="true" />
 
-                    <EditText
-                        android:id="@+id/enq_edt_email"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="Email"
-                        android:inputType="textEmailAddress"
-                        android:singleLine="true" />
-                </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/enq_edt_mobile"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="Mobile"
-                        android:inputType="phone"
-                        android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
 
-                </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_password_reg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/enq_edt_city"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="City"
+                    android:inputType="text"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
 
-                </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_re_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_password_reg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/enq_edt_city"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="City"
-                        android:inputType="text"
-                        android:singleLine="true" />
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_re_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/enq_edt_address"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="Address"
-                        android:inputType="textPassword"
-                        android:singleLine="true" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/enq_edt_message"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="Message"
-                        android:inputType="text"
-                        android:singleLine="true" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <LinearLayout
+                <EditText
+                    android:id="@+id/enq_edt_address"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.5">
+                    android:hint="Address"
+                    android:inputType="text"
+                    android:singleLine="true" />
 
-                    <Button
-                        android:id="@+id/enq_btn_clear"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:text="Clear"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textColor="@color/textColorthird" />
+            </android.support.design.widget.TextInputLayout>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="0.5" />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/enq_btn_register"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:background="@color/colorPrimary"
-                        android:text="Submit"
-                        android:textColor="@color/textColorthird" />
+                <EditText
+                    android:id="@+id/enq_edt_message"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:hint="Message"
+                    android:inputType="text"
+                    android:singleLine="true" />
 
-                </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="60dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2.5">
 
+                <Button
+                    android:id="@+id/enq_btn_clear"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/textColorthird"
+                    android:textSize="16sp"
+                    android:text="Clear"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.5" />
+
+                <Button
+                    android:id="@+id/enq_btn_register"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:text="Submit"
+                    android:textColor="@color/textColorthird"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
-        </ScrollView>
-    </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

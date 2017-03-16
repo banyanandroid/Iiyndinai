@@ -9,6 +9,7 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#8BC34A</color>
+    <color name="colorAccentRed">#F44336</color>
     <color name="divider">#BDBDBD</color>
     <color name="trans_dark">#aa000000</color>
     <color name="trans_lite">#aaFFFFFF</color>

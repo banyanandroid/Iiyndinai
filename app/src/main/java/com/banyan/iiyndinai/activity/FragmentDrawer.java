@@ -20,12 +20,18 @@ import com.banyan.iiyndinai.adapter.NavigationDrawerAdapter;
 import com.banyan.iiyndinai.model.NavDrawerItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class FragmentDrawer extends Fragment {
 
     private static String TAG = FragmentDrawer.class.getSimpleName();
+
+    // Session Manager Class
+    SessionManager session;
+    String str_status;
+    String str_id,str_name;
 
     private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -60,8 +66,37 @@ public class FragmentDrawer extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // drawer labels
-        titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
+        session = new SessionManager(getContext());
+
+        str_status = "" + session.isLoggedIn();
+
+        if (str_status.equals("true")){
+
+            System.out.println("FALSE TRUE");
+            session.checkLogin();
+
+            // get user data from session
+            HashMap<String, String> user = session.getUserDetails();
+
+            // name
+            str_name = user.get(SessionManager.KEY_USER);
+            str_id = user.get(SessionManager.KEY_USER_ID);
+
+            System.out.println("USER ID MAIN : " + str_id);
+            System.out.println("USER NAME MAIN : " + str_name);
+
+            // drawer labels
+            titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels_logout);
+
+
+        }else if (str_status.equals("false")){
+
+            // drawer labels
+            titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels_login);
+
+        }
+
+
     }
 
     @Override
@@ -77,8 +112,14 @@ public class FragmentDrawer extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                drawerListener.onDrawerItemSelected(view, position);
-                mDrawerLayout.closeDrawer(containerView);
+                try {
+                    drawerListener.onDrawerItemSelected(view, position);
+                    mDrawerLayout.closeDrawer(containerView);
+
+                }catch (Exception e) {
+
+                }
+
             }
 
             @Override
@@ -124,6 +165,9 @@ public class FragmentDrawer extends Fragment {
 
     }
 
+
+
+
     public static interface ClickListener {
         public void onClick(View view, int position);
 
@@ -157,6 +201,7 @@ public class FragmentDrawer extends Fragment {
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
 
             View child = rv.findChildViewUnder(e.getX(), e.getY());
+
             if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
                 clickListener.onClick(child, rv.getChildPosition(child));
             }

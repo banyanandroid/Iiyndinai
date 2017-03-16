@@ -1,17 +1,13 @@
 package com.banyan.iiyndinai.activity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,16 +38,18 @@ public class Activity_Login extends Activity {
     private ProgressDialog pDialog;
     int i;
     private static final String TAG = "Login";
+    private static final String TAG_NAME = "user_name";
+    private static final String TAG_ID = "user_id";
 
     public static RequestQueue queue;
 
-    TextView txt_title, txt_forgot_password, txt_register;
+    TextView txt_title, txt_forgot_password, txt_register, txt_skip;
     String mobile;
     EditText edt_username, edt_password;
     EditText edt1;
     Button btn_login;
     String str_username, str_password = "";
-
+    String str_name, str_user_id;
 
     // Session Manager Class
     SessionManager session;
@@ -69,6 +67,9 @@ public class Activity_Login extends Activity {
         edt_password = (EditText) findViewById(R.id.editTextPassword);
         btn_login = (Button) findViewById(R.id.buttonLogin);
         txt_register = (TextView) findViewById(R.id.linkSignup);
+
+        txt_skip = (TextView) findViewById(R.id.login_txt_skip);
+        txt_skip.setVisibility(View.VISIBLE);
 
 
         // Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
@@ -99,6 +100,17 @@ public class Activity_Login extends Activity {
             }
         });
 
+        txt_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(Activity_Login.this, MainActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+
         /*txt_forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +132,45 @@ public class Activity_Login extends Activity {
         });
     }
 
+    public final boolean isInternetOn() {
+
+        // get Connectivity Manager object to check connection
+        ConnectivityManager connec =
+                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+
+        // Check for network connections
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
+            return true;
+
+        } else if (
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
+            new AlertDialog.Builder(Activity_Login.this)
+                    .setTitle("Iiyndinai")
+                    .setMessage("!Oops no internet BuDdY")
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    // TODO Auto-generated method stub
+                                    // finish();
+                                    Intent ins = new Intent(Activity_Login.this, Activity_Login.class);
+                                    startActivity(ins);
+                                }
+                            }).show();
+            Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return false;
+    }
+
 
     private void Function_Login() {
 
@@ -132,17 +183,26 @@ public class Activity_Login extends Activity {
                 Log.d(TAG, response.toString());
                 try {
                     JSONObject obj = new JSONObject(response);
+//                    JSONObject respon = obj.getJSONObject("response");
+
                     int success = obj.getInt("success");
 
                     if (success == 1) {
 
                         i = 1;
-                        Crouton.makeText(Activity_Login.this,
-                                "Login Successfully",
-                                Style.CONFIRM)
-                                .show();
+                        JSONArray arr;
+                        arr = obj.getJSONArray("login_user");
 
-                        session.createLoginSession(str_username);
+                        for (int i = 0; arr.length() > i; i++) {
+                            JSONObject obj1 = arr.getJSONObject(i);
+
+                            str_name = obj1.getString(TAG_NAME);
+                            str_user_id = obj1.getString(TAG_ID);
+                        }
+                        System.out.println(str_name);
+                        System.out.println(str_user_id);
+
+                        session.createLoginSession(str_name, str_user_id);
 
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
@@ -193,12 +253,11 @@ public class Activity_Login extends Activity {
     }
 
 
-    // End forgot pasword email fnction
     @Override
     public void onBackPressed() {
         // your code.
         new AlertDialog.Builder(Activity_Login.this)
-                .setTitle("MSS Travels")
+                .setTitle("Iiyndinai")
                 .setMessage("Want to Exit ?")
                 .setIcon(R.mipmap.ic_launcher)
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -211,7 +270,6 @@ public class Activity_Login extends Activity {
                 })
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
-                            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
